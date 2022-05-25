@@ -12,31 +12,31 @@ def checkPresence(word_list,word):
     return False
 
 def getInput():
-    l=0
+    word_length=0
     word=""
-    while l!=5:
+    while word_length!=5:
         word=input("Enter word: ")
-        l=len(word)
-        if l!=5:
+        word_length=len(word)
+        if word_length!=5:
             print("only 5 letter word, try again")
     return (word)
 
-ul = "https://raw.githubusercontent.com/charlesreid1/five-letter-words/master/sgb-words.txt"
-r = requests.get(ul)
-r=str(r.text)
-ll=r.split()
-given_word=random.choice(ll)
+url = "https://raw.githubusercontent.com/charlesreid1/five-letter-words/master/sgb-words.txt"
+result = requests.get(url)
+result=str(result.text)
+word_list=result.split()
+given_word=random.choice(word_list)
 found=False
 turn=1
 print("The following letters indicates:")
 print("g: letter is in the right place")
 print("y: letter exists in the guess word but is in the wrong place")
 print("b: letter does not exist")
+print("Turn no: ",turn)
 word=getInput()
 res=""
 while found==False and turn<6:
-    print("Turn no: ",turn)
-    if checkPresence(ll,word)==True:
+    if checkPresence(word_list,word)==True:
         res=""
         for i in range(0,5):
             if word[i]==given_word[i]:
@@ -52,8 +52,9 @@ while found==False and turn<6:
             break
         else:
             print("Try again")
-            word=getInput()
             turn=turn+1
+            print("Turn no: ",turn)
+            word=getInput()
     else:
         print("Word does not exists")
         print("Try again")
