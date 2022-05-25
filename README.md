@@ -3,5 +3,5 @@
 - Install requests
 - Install random
 ## Code Execution
-This is a command line program which can be executed by
+This program can be executed by cli using
 ` python3 App.py`
